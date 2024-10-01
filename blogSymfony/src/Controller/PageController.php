@@ -65,7 +65,7 @@ class PageController extends AbstractController
         $user = new User();
         $form = $this->createFormBuilder($user)
             ->add('username', TextType::class)
-            ->add('email', EmailType::class)
+            //->add('email', EmailType::class)
             ->add('Password', PasswordType::class)
             ->add('description', TextareaType::class)
             ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))
@@ -84,7 +84,7 @@ class PageController extends AbstractController
     }
 
 
-    #[Route('/NewPost', name: 'New_Post')]
+    /*#[Route('/NewPost', name: 'New_Post')]
     public function newPost(ManagerRegistry $doctrine): Response
     {
         $fecha = new \DateTime();
@@ -113,6 +113,28 @@ class PageController extends AbstractController
                 return new Response("Error al crear el nuevo post". $e->getMessage());
             }
         }
+    }*/
+
+    #[Route('/NewPost', name: 'New_Post')]
+    public function newPost(ManagerRegistry $doctrine): Response
+    {
+        $fecha = new \DateTime();
+        $post = new Post();
+        $form = $this->createFormBuilder($post)
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('save', SubmitType::class, array('label' => 'Crear Post'))
+            ->getForm();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
+            return $this->redirectToRoute('Find_Post_Id', ["id" => $post->getId()]);
+        }
+        return $this->render('formPost.html.twig', [
+            'formulario' => $form->createView(),
+        ]);
     }
 
     #[Route('/AllUsers', name: 'All_users')]
