@@ -5,9 +5,15 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\User;
 use DateTime;
+use Doctrine\DBAL\Types\TextType;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\Node\Expr\Empty_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\isEmpty;
@@ -28,7 +34,7 @@ class PageController extends AbstractController
         return new Response('<h1>Bienvenido a la pagina principal</h1>');
     }
 
-    #[Route('/newUser', name: 'New_User')]
+    /*#[Route('/newUser', name: 'New_User')]
     public function newUser(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
@@ -51,7 +57,24 @@ class PageController extends AbstractController
                 return new Response("Error al dar de alta el nuevo usuario". $e->getMessage());
             }
         }
+    }*/
+
+    #[Route('/newUser', name: 'New_User')]
+    public function newUser(ManagerRegistry $doctrine): Response
+    {
+        $user = new User();
+        $form = $this->createFormBuilder($user)
+            ->add('username', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('Password', PasswordType::class)
+            ->add('description', TextareaType::class)
+            ->add('foto', FileType::class)
+            ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))
+            ->getForm();
+        return new Response($form);
+        //Arreglar formulario
     }
+
 
     #[Route('/NewPost', name: 'New_Post')]
     public function newPost(ManagerRegistry $doctrine): Response
