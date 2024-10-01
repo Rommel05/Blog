@@ -6,9 +6,11 @@ use App\Entity\Post;
 use App\Entity\User;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\Empty_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function PHPUnit\Framework\isEmpty;
 
 class PageController extends AbstractController
 {
@@ -87,22 +89,31 @@ class PageController extends AbstractController
     {
         $repositorio = $doctrine->getRepository(User::class);
         $usuarios = $repositorio->findAll();
+        if (empty($usuarios)) {
+            return new Response("No hay usuarios disponibles");
+        }
         $resultado = "";
         foreach ($usuarios as $usuario) {
-            $resultado .= $usuario->getId(). " " . $usuario->getUsername(). " " . $usuario->getDescription();
+            $resultado .= $usuario->getId(). " " . $usuario->getUsername(). " " . $usuario->getDescription(). " ";
         }
         return new Response($resultado);
     }
 
-    #[Route('/FindUserId', name: 'Find_User_Id')]
-    public function FindUserId(ManagerRegistry $doctrine): Response
+    #[Route('/FindUserId/{id?}', name: 'Find_User_Id')]
+    public function FindUserId(ManagerRegistry $doctrine,$id): Response
     {
-        $id = $_GET['userId'] ?? null;
         $repositorio = $doctrine->getRepository(User::class);
-        $usuario = $repositorio->find($id);
-        $resultado = $usuario->getId(). " " .$usuario->getUsername() . " " . $usuario->getDescription();
 
-        return new Response($resultado);
+        if(!$id) {
+            return new Response("Tienes que proporcionar el ID para realizar la búsqueda");
+        } else {
+            $usuario = $repositorio->find($id);
+            if (!$usuario) {
+                return new Response("No se ha encontrado nungún usuario con el ID que has proporcionado");
+            }
+            $resultado = $usuario->getId(). " " .$usuario->getUsername() . " " . $usuario->getDescription();
+            return new Response($resultado);
+        }
     }
 
     #[Route('/AllPosts', name: 'All_Posts')]
@@ -110,6 +121,9 @@ class PageController extends AbstractController
     {
         $repositorio = $doctrine->getRepository(Post::class);
         $posts = $repositorio->findAll();
+        if (empty($posts)) {
+            return new Response("No hay usuarios disponibles");
+        }
         $resultado = "";
         foreach ($posts as $post) {
             $resultado .= $post->getId(). " " . $post->getTitle(). " " . $post->getDescription();
@@ -118,13 +132,19 @@ class PageController extends AbstractController
         return new Response($resultado);
     }
 
-    #[Route('/FindPostId', name: 'Find_Post_Id')]
-    public function FindPostId(ManagerRegistry $doctrine): Response
+    #[Route('/FindPostId/{id?}', name: 'Find_Post_Id')]
+    public function FindPostId(ManagerRegistry $doctrine,$id): Response
     {
-        $id = $_GET['postId'] ?? null;
         $repositorio = $doctrine->getRepository(Post::class);
-        $post = $repositorio->find($id);
-        $resultado = $post->getId(). " " .$post->getTitle(). " " . $post->getDescription();
-        return new Response($resultado);
+        if (!$id) {
+            return new Response("Tienes que proporcionar el ID para realizar la búsqueda");
+        } else {
+            $post = $repositorio->find($id);
+            if (!$post) {
+                return new Response("No se ha encontrado nungún post con el ID que has proporcionado");
+            }
+            $resultado = $post->getId(). " " .$post->getTitle(). " " . $post->getDescription();
+            return new Response($resultado);
+        }
     }
 }

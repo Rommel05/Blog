@@ -21,7 +21,7 @@ return [
     'New_User' => [[], ['_controller' => 'App\\Controller\\PageController::newUser'], [], [['text', '/newUser']], [], [], []],
     'New_Post' => [[], ['_controller' => 'App\\Controller\\PageController::newPost'], [], [['text', '/NewPost']], [], [], []],
     'All_users' => [[], ['_controller' => 'App\\Controller\\PageController::allusers'], [], [['text', '/AllUsers']], [], [], []],
-    'Find_User_Id' => [[], ['_controller' => 'App\\Controller\\PageController::FindUserId'], [], [['text', '/FindUserId']], [], [], []],
+    'Find_User_Id' => [['id'], ['id' => null, '_controller' => 'App\\Controller\\PageController::FindUserId'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/FindUserId']], [], [], []],
     'All_Posts' => [[], ['_controller' => 'App\\Controller\\PageController::AllPosts'], [], [['text', '/AllPosts']], [], [], []],
-    'Find_Post_Id' => [[], ['_controller' => 'App\\Controller\\PageController::FindPostId'], [], [['text', '/FindPostId']], [], [], []],
+    'Find_Post_Id' => [['id'], ['id' => null, '_controller' => 'App\\Controller\\PageController::FindPostId'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/FindPostId']], [], [], []],
 ];

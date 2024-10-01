@@ -19,9 +19,7 @@ return [
         '/newUser' => [[['_route' => 'New_User', '_controller' => 'App\\Controller\\PageController::newUser'], null, null, null, false, false, null]],
         '/NewPost' => [[['_route' => 'New_Post', '_controller' => 'App\\Controller\\PageController::newPost'], null, null, null, false, false, null]],
         '/AllUsers' => [[['_route' => 'All_users', '_controller' => 'App\\Controller\\PageController::allusers'], null, null, null, false, false, null]],
-        '/FindUserId' => [[['_route' => 'Find_User_Id', '_controller' => 'App\\Controller\\PageController::FindUserId'], null, null, null, false, false, null]],
         '/AllPosts' => [[['_route' => 'All_Posts', '_controller' => 'App\\Controller\\PageController::AllPosts'], null, null, null, false, false, null]],
-        '/FindPostId' => [[['_route' => 'Find_Post_Id', '_controller' => 'App\\Controller\\PageController::FindPostId'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -40,6 +38,10 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
+                .'|/Find(?'
+                    .'|UserId(?:/([^/]++))?(*:197)'
+                    .'|PostId(?:/([^/]++))?(*:225)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -49,8 +51,10 @@ return [
         116 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        159 => [
-            [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
+        159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+        197 => [[['_route' => 'Find_User_Id', 'id' => null, '_controller' => 'App\\Controller\\PageController::FindUserId'], ['id'], null, null, false, true, null]],
+        225 => [
+            [['_route' => 'Find_Post_Id', 'id' => null, '_controller' => 'App\\Controller\\PageController::FindPostId'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
