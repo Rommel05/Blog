@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -17,9 +18,11 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 120)]
+    #[Assert\NotBlank(message: "El nombre es obligatorio")]
     private ?string $username = null;
 
     #[ORM\Column(length: 120)]
+    #[Assert\NotBlank(message: "La contraseña es obligatorio")]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]

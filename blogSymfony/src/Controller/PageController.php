@@ -7,6 +7,7 @@ use App\Entity\User;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\Node\Expr\Empty_;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -80,7 +81,7 @@ class PageController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('Find_User_Id', ["id" => $user->getId()]);
         }
-        return $this->render('form.html.twig', [
+        return $this->render('formularios/form.html.twig', [
             'formulario' => $form->createView(),
         ]);
     }
@@ -125,6 +126,10 @@ class PageController extends AbstractController
         $form = $this->createFormBuilder($post)
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
+            ->add('usuario', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'username',
+            ])
             ->add('save', SubmitType::class, array('label' => 'Crear Post'))
             ->getForm();
 
@@ -138,7 +143,7 @@ class PageController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('Find_Post_Id', ["id" => $post->getId()]);
         }
-        return $this->render('formPost.html.twig', [
+        return $this->render('formularios/formPost.html.twig', [
             'formulario' => $form->createView(),
         ]);
     }
@@ -148,7 +153,7 @@ class PageController extends AbstractController
     {
         $repositorio = $doctrine->getRepository(User::class);
         $usuarios = $repositorio->findAll();
-        return $this->render('users.html.twig', [
+        return $this->render('User/users.html.twig', [
             'users' => $usuarios,
         ]);
     }
@@ -162,7 +167,7 @@ class PageController extends AbstractController
             return new Response("Tienes que proporcionar el ID para realizar la búsqueda");
         } else {
             $usuario = $repositorio->find($id);
-            return $this->render('user.html.twig', [
+            return $this->render('User/user.html.twig', [
                 'user' => $usuario,
             ]);
         }
@@ -173,7 +178,7 @@ class PageController extends AbstractController
     {
         $repositorio = $doctrine->getRepository(Post::class);
         $posts = $repositorio->findAll();
-        return $this->render('posts.html.twig', [
+        return $this->render('Post/posts.html.twig', [
             'posts' => $posts,
         ]);
     }
@@ -186,9 +191,66 @@ class PageController extends AbstractController
             return new Response("Tienes que proporcionar el ID para realizar la búsqueda");
         } else {
             $post = $repositorio->find($id);
-            return $this->render('post.html.twig', [
+            return $this->render('Post/post.html.twig', [
                 'post' => $post,
             ]);
         }
     }
+
+    #[Route('/ModifyUser/{id?}', name: 'ModifyUser')]
+    public function ModifyUser(ManagerRegistry $doctrine, Request $request, $id): Response {
+        $repositorio = $doctrine->getRepository(User::class);
+        $usuario = $repositorio->find($id);
+
+        $form = $this->createFormBuilder($usuario)
+            ->add('username', TextType::class)
+            //->add('email', EmailType::class)
+            ->add('Password', PasswordType::class)
+            ->add('description', TextareaType::class)
+            ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $usuario = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($usuario);
+            $entityManager->flush();
+        }
+        return $this->render('formularios/modifyUser.html.twig', [
+            'formulario' => $form->createView(),
+        ]);
+
+    }
+
+    #[Route('/ModifyPost/{id?}', name: 'ModifyPost')]
+    public function ModifyPost(ManagerRegistry $doctrine, Request $request, $id): Response {
+        $repositorio = $doctrine->getRepository(Post::class);
+        $post = $repositorio->find($id);
+
+        $form = $this->createFormBuilder($post)
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('usuario', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'username',
+            ])
+            ->add('save', SubmitType::class, array('label' => 'Crear Post'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
+        }
+
+        return $this->render('formularios/modifyPost.html.twig', [
+            'formulario' => $form->createView(),
+        ]);
+    }
+
 }
