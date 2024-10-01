@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Post{% endblock %}
+{% block body %}
+    <h1>Post</h1>
+    {% if post %}
+        {{ include ('partials/datos_post.html.twig', {'post': post}) }}
+    {% else %}
+        <p>Post no encontrado</p>
+    {% endif %}
+{% endblock %}

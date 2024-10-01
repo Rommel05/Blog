@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\isEmpty;
@@ -60,7 +61,7 @@ class PageController extends AbstractController
     }*/
 
     #[Route('/newUser', name: 'New_User')]
-    public function newUser(ManagerRegistry $doctrine): Response
+    public function newUser(ManagerRegistry $doctrine, Request $request): Response
     {
         $user = new User();
         $form = $this->createFormBuilder($user)
@@ -71,6 +72,7 @@ class PageController extends AbstractController
             ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))
             ->getForm();
 
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
             $entityManager = $doctrine->getManager();
@@ -116,7 +118,7 @@ class PageController extends AbstractController
     }*/
 
     #[Route('/NewPost', name: 'New_Post')]
-    public function newPost(ManagerRegistry $doctrine): Response
+    public function newPost(ManagerRegistry $doctrine, Request $request): Response
     {
         $fecha = new \DateTime();
         $post = new Post();
@@ -125,8 +127,12 @@ class PageController extends AbstractController
             ->add('description', TextareaType::class)
             ->add('save', SubmitType::class, array('label' => 'Crear Post'))
             ->getForm();
+
+        $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
+            $post->setFecha($fecha);
             $entityManager = $doctrine->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
@@ -167,15 +173,9 @@ class PageController extends AbstractController
     {
         $repositorio = $doctrine->getRepository(Post::class);
         $posts = $repositorio->findAll();
-        if (empty($posts)) {
-            return new Response("No hay usuarios disponibles");
-        }
-        $resultado = "";
-        foreach ($posts as $post) {
-            $resultado .= $post->getId(). " " . $post->getTitle(). " " . $post->getDescription();
-        }
-
-        return new Response($resultado);
+        return $this->render('posts.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 
     #[Route('/FindPostId/{id?}', name: 'Find_Post_Id')]
@@ -186,11 +186,9 @@ class PageController extends AbstractController
             return new Response("Tienes que proporcionar el ID para realizar la búsqueda");
         } else {
             $post = $repositorio->find($id);
-            if (!$post) {
-                return new Response("No se ha encontrado nungún post con el ID que has proporcionado");
-            }
-            $resultado = $post->getId(). " " .$post->getTitle(). " " . $post->getDescription();
-            return new Response($resultado);
+            return $this->render('post.html.twig', [
+                'post' => $post,
+            ]);
         }
     }
 }
