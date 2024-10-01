@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\User;
 use DateTime;
-use Doctrine\DBAL\Types\TextType;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\Node\Expr\Empty_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\isEmpty;
@@ -68,11 +68,11 @@ class PageController extends AbstractController
             ->add('email', EmailType::class)
             ->add('Password', PasswordType::class)
             ->add('description', TextareaType::class)
-            ->add('foto', FileType::class)
             ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))
             ->getForm();
-        return new Response($form);
-        //Arreglar formulario
+        return $this->render('form.html.twig', [
+            'formulario' => $form->createView(),
+        ]);
     }
 
 
@@ -112,14 +112,9 @@ class PageController extends AbstractController
     {
         $repositorio = $doctrine->getRepository(User::class);
         $usuarios = $repositorio->findAll();
-        if (empty($usuarios)) {
-            return new Response("No hay usuarios disponibles");
-        }
-        $resultado = "";
-        foreach ($usuarios as $usuario) {
-            $resultado .= $usuario->getId(). " " . $usuario->getUsername(). " " . $usuario->getDescription(). " ";
-        }
-        return new Response($resultado);
+        return $this->render('users.html.twig', [
+            'users' => $usuarios,
+        ]);
     }
 
     #[Route('/FindUserId/{id?}', name: 'Find_User_Id')]
@@ -131,11 +126,9 @@ class PageController extends AbstractController
             return new Response("Tienes que proporcionar el ID para realizar la búsqueda");
         } else {
             $usuario = $repositorio->find($id);
-            if (!$usuario) {
-                return new Response("No se ha encontrado nungún usuario con el ID que has proporcionado");
-            }
-            $resultado = $usuario->getId(). " " .$usuario->getUsername() . " " . $usuario->getDescription();
-            return new Response($resultado);
+            return $this->render('user.html.twig', [
+                'user' => $usuario,
+            ]);
         }
     }
 
