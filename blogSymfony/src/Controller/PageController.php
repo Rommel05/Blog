@@ -70,6 +70,14 @@ class PageController extends AbstractController
             ->add('description', TextareaType::class)
             ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))
             ->getForm();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('Find_User_Id', ["id" => $user->getId()]);
+        }
         return $this->render('form.html.twig', [
             'formulario' => $form->createView(),
         ]);
