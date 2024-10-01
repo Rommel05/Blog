@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Usuario{% endblock %}
+{% block body %}
+    <h1>User</h1>
+    {% if user %}
+        {{ include ('partials/datos_usuario.html.twig', {'user': user}) }}
+    {% else %}
+        <p>Usuario no encontrado</p>
+    {% endif %}
+{% endblock %}

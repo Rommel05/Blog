@@ -1,0 +1,12 @@
+{% extends 'base.html.twig'%}
+{% block title %}Usuarios{% endblock %}
+{% block body %}
+    <h1>Usuarios</h1>
+    {% if users %}
+        {% for user in users %}
+            {{ include ('partials/datos_usuario.html.twig', {'user': user}) }}
+        {% endfor %}
+    {% else %}
+        <p>No se han encontrado usuarios</p>
+    {% endif %}
+{% endblock %}
