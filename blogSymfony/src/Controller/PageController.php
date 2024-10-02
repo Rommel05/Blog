@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\User;
+use App\Form\PostType;
+use App\Form\UserType;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use PhpParser\Node\Expr\Empty_;
@@ -61,7 +63,7 @@ class PageController extends AbstractController
         }
     }*/
 
-    #[Route('/NewUser', name: 'New_User')]
+    /*#[Route('/NewUser', name: 'New_User')]
     public function newUser(ManagerRegistry $doctrine, Request $request): Response
     {
         $user = new User();
@@ -84,7 +86,7 @@ class PageController extends AbstractController
         return $this->render('formularios/form.html.twig', [
             'formulario' => $form->createView(),
         ]);
-    }
+    }*/
 
 
     /*#[Route('/NewPost', name: 'New_Post')]
@@ -118,7 +120,26 @@ class PageController extends AbstractController
         }
     }*/
 
-    #[Route('/NewPost', name: 'New_Post')]
+    #[Route('/NewUser', name: 'New_User')]
+    public function newUser(ManagerRegistry $doctrine, Request $request): Response
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('Find_User_Id', ["id" => $user->getId()]);
+        }
+        return $this->render('formularios/form.html.twig', [
+            'formulario' => $form->createView(),
+        ]);
+    }
+
+    /*#[Route('/NewPost', name: 'New_Post')]
     public function newPost(ManagerRegistry $doctrine, Request $request): Response
     {
         $fecha = new \DateTime();
@@ -146,7 +167,31 @@ class PageController extends AbstractController
         return $this->render('formularios/formPost.html.twig', [
             'formulario' => $form->createView(),
         ]);
+    }*/
+
+    #[Route('/NewPost', name: 'New_Post')]
+    public function newPost(ManagerRegistry $doctrine, Request $request): Response
+    {
+        $fecha = new \DateTime();
+        $post = new Post();
+        $form = $this->createForm(PostType::class,$post);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $post->setFecha($fecha);
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
+            return $this->redirectToRoute('Find_Post_Id', ["id" => $post->getId()]);
+        }
+        return $this->render('formularios/formPost.html.twig', [
+            'formulario' => $form->createView(),
+        ]);
     }
+
 
     #[Route('/AllUsers', name: 'All_users')]
     public function allusers(ManagerRegistry $doctrine): Response

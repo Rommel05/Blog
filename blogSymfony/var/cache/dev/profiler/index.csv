@@ -121,3 +121,12 @@ dea07d,127.0.0.1,GET,http://localhost:8000/FindUserId/2,1727865144,,200
 d70355,127.0.0.1,GET,http://localhost:8000/,1727865887,,200
 1fc5af,127.0.0.1,GET,http://localhost:8000/,1727865888,,200
 6a3d81,127.0.0.1,GET,http://localhost:8000/,1727865909,,200
+fa57a4,127.0.0.1,GET,http://localhost:8000/NewUser,1727867547,d0abcc,500
+d0abcc,127.0.0.1,GET,http://localhost:8000/NewUser,1727867547,,500
+474bb4,127.0.0.1,GET,http://localhost:8000/NewUser,1727867635,,200
+fcc70e,127.0.0.1,GET,http://localhost:8000/NewUser,1727867636,,200
+be1f5b,127.0.0.1,POST,http://localhost:8000/NewUser,1727867688,,302
+ef5dd5,127.0.0.1,GET,http://localhost:8000/FindUserId/3,1727867688,,200
+9bd037,127.0.0.1,GET,http://localhost:8000/NewPost,1727867703,,200
+2ab8a6,127.0.0.1,POST,http://localhost:8000/NewPost,1727867747,,302
+0d2b8e,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727867747,,200
