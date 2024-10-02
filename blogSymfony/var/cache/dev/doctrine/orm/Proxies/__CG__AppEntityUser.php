@@ -67,10 +67,10 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'description', '' . "\0" . 'App\\Entity\\User' . "\0" . 'foto', '' . "\0" . 'App\\Entity\\User' . "\0" . 'Post'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'description', '' . "\0" . 'App\\Entity\\User' . "\0" . 'foto', '' . "\0" . 'App\\Entity\\User' . "\0" . 'Post', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'description', '' . "\0" . 'App\\Entity\\User' . "\0" . 'foto', '' . "\0" . 'App\\Entity\\User' . "\0" . 'Post'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'description', '' . "\0" . 'App\\Entity\\User' . "\0" . 'foto', '' . "\0" . 'App\\Entity\\User' . "\0" . 'Post', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email'];
     }
 
     /**
@@ -311,6 +311,28 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePost', [$post]);
 
         return parent::removePost($post);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEmail(): ?string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', []);
+
+        return parent::getEmail();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEmail(string $email): static
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmail', [$email]);
+
+        return parent::setEmail($email);
     }
 
 }

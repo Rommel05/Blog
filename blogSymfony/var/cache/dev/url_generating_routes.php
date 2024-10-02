@@ -18,7 +18,7 @@ return [
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_page' => [[], ['_controller' => 'App\\Controller\\PageController::index'], [], [['text', '/page']], [], [], []],
     'inicio' => [[], ['_controller' => 'App\\Controller\\PageController::inicio'], [], [['text', '/']], [], [], []],
-    'New_User' => [[], ['_controller' => 'App\\Controller\\PageController::newUser'], [], [['text', '/newUser']], [], [], []],
+    'New_User' => [[], ['_controller' => 'App\\Controller\\PageController::newUser'], [], [['text', '/NewUser']], [], [], []],
     'New_Post' => [[], ['_controller' => 'App\\Controller\\PageController::newPost'], [], [['text', '/NewPost']], [], [], []],
     'All_users' => [[], ['_controller' => 'App\\Controller\\PageController::allusers'], [], [['text', '/AllUsers']], [], [], []],
     'Find_User_Id' => [['id'], ['id' => null, '_controller' => 'App\\Controller\\PageController::FindUserId'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/FindUserId']], [], [], []],

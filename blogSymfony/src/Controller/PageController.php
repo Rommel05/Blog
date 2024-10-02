@@ -33,7 +33,7 @@ class PageController extends AbstractController
     #[Route('/', name: 'inicio')]
     public function inicio(): Response
     {
-        return new Response('<h1>Bienvenido a la pagina principal</h1>');
+        return $this->render('inicio/inicio.html.twig');
     }
 
     /*#[Route('/newUser', name: 'New_User')]
@@ -61,7 +61,7 @@ class PageController extends AbstractController
         }
     }*/
 
-    #[Route('/newUser', name: 'New_User')]
+    #[Route('/NewUser', name: 'New_User')]
     public function newUser(ManagerRegistry $doctrine, Request $request): Response
     {
         $user = new User();
