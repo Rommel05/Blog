@@ -67,7 +67,7 @@ class PageController extends AbstractController
         $user = new User();
         $form = $this->createFormBuilder($user)
             ->add('username', TextType::class)
-            //->add('email', EmailType::class)
+            ->add('email', EmailType::class)
             ->add('Password', PasswordType::class)
             ->add('description', TextareaType::class)
             ->add('save', SubmitType::class, array('label' => 'Crear Usuario'))

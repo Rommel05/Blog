@@ -34,6 +34,9 @@ class User
     #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: Post::class, orphanRemoval: true)]
     private Collection $Post;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function __construct()
     {
         $this->Post = new ArrayCollection();
@@ -118,6 +121,18 @@ class User
                 $post->setUsuario(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }

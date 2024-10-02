@@ -6134,12 +6134,14 @@
         <argument key="doctrine" type="service_closure" id="doctrine"/>
       </argument>
     </service>
-    <service id=".service_locator.krfdc4Z" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UmjZA63" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\PageController::AllPosts" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController::FindPostId" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController::FindUserId" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PageController::ModifyPost" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PageController::ModifyUser" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController::allusers" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController::newPost" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController::newUser" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -6150,6 +6152,8 @@
         <argument key="App\Controller\PageController:AllPosts" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController:FindPostId" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController:FindUserId" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PageController:ModifyPost" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\PageController:ModifyUser" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController:allusers" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController:newPost" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PageController:newUser" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -6938,12 +6942,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.krfdc4Z"/>
+      <argument type="service" id=".service_locator.UmjZA63"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.krfdc4Z"/>
+      <argument type="service" id=".service_locator.UmjZA63"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7970,7 +7974,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.krfdc4Z"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.UmjZA63"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -7991,7 +7995,7 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.wsP9pFD" alias=".service_locator.krfdc4Z"/>
+    <service id=".service_locator.El_1I6t" alias=".service_locator.UmjZA63"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>

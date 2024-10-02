@@ -42,6 +42,10 @@ return [
                     .'|UserId(?:/([^/]++))?(*:197)'
                     .'|PostId(?:/([^/]++))?(*:225)'
                 .')'
+                .'|/Modify(?'
+                    .'|User(?:/([^/]++))?(*:262)'
+                    .'|Post(?:/([^/]++))?(*:288)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -53,8 +57,10 @@ return [
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         197 => [[['_route' => 'Find_User_Id', 'id' => null, '_controller' => 'App\\Controller\\PageController::FindUserId'], ['id'], null, null, false, true, null]],
-        225 => [
-            [['_route' => 'Find_Post_Id', 'id' => null, '_controller' => 'App\\Controller\\PageController::FindPostId'], ['id'], null, null, false, true, null],
+        225 => [[['_route' => 'Find_Post_Id', 'id' => null, '_controller' => 'App\\Controller\\PageController::FindPostId'], ['id'], null, null, false, true, null]],
+        262 => [[['_route' => 'ModifyUser', 'id' => null, '_controller' => 'App\\Controller\\PageController::ModifyUser'], ['id'], null, null, false, true, null]],
+        288 => [
+            [['_route' => 'ModifyPost', 'id' => null, '_controller' => 'App\\Controller\\PageController::ModifyPost'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

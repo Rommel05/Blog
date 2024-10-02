@@ -86,3 +86,7 @@ ab3bb0,127.0.0.1,GET,http://localhost:8000/FindUserId,1727765479,,200
 19b07a,127.0.0.1,GET,http://localhost:8000/FindPostId/,1727766261,,301
 380ade,127.0.0.1,GET,http://localhost:8000/FindPostId,1727766261,,200
 c56b65,127.0.0.1,GET,http://localhost:8000/FindPostId,1727766261,,200
+fbf50d,127.0.0.1,GET,http://localhost:8000/newUser,1727864317,5e8ec9,500
+5e8ec9,127.0.0.1,GET,http://localhost:8000/newUser,1727864317,,500
+fefc41,127.0.0.1,GET,http://localhost:8000/newUser,1727864510,,200
+07083d,127.0.0.1,GET,http://localhost:8000/newUser,1727864617,,200
