@@ -45,20 +45,21 @@ class __TwigTemplate_e1702b65ed1b76876943b4883a335ab9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "partials/datos_usuario.html.twig"));
 
         // line 1
-        yield "<ul>
-    <li><strong>";
+        yield "<div>
+    <p><strong>Username: ";
         // line 2
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 2, $this->source); })()), "username", [], "any", false, false, false, 2), "html", null, true);
-        yield "</strong></li>
-    <li><strong>";
+        yield "</strong></p>
+    <p><strong>Email: ";
         // line 3
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 3, $this->source); })()), "email", [], "any", false, false, false, 3), "html", null, true);
-        yield "</strong></li>
-    <li><strong>";
+        yield "</strong></p>
+    <p><strong>Description: ";
         // line 4
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 4, $this->source); })()), "description", [], "any", false, false, false, 4), "html", null, true);
-        yield "</strong></li>
-</ul>";
+        yield "</strong></p>
+    <hr>
+</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -94,10 +95,11 @@ class __TwigTemplate_e1702b65ed1b76876943b4883a335ab9 extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("<ul>
-    <li><strong>{{ user.username }}</strong></li>
-    <li><strong>{{ user.email }}</strong></li>
-    <li><strong>{{ user.description }}</strong></li>
-</ul>", "partials/datos_usuario.html.twig", "/home/alumno/Documentos/Blog/blogSymfony/templates/partials/datos_usuario.html.twig");
+        return new Source("<div>
+    <p><strong>Username: {{ user.username }}</strong></p>
+    <p><strong>Email: {{ user.email }}</strong></p>
+    <p><strong>Description: {{ user.description }}</strong></p>
+    <hr>
+</div>", "partials/datos_usuario.html.twig", "/home/alumno/Documentos/Blog/blogSymfony/templates/partials/datos_usuario.html.twig");
     }
 }

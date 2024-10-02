@@ -130,3 +130,13 @@ ef5dd5,127.0.0.1,GET,http://localhost:8000/FindUserId/3,1727867688,,200
 9bd037,127.0.0.1,GET,http://localhost:8000/NewPost,1727867703,,200
 2ab8a6,127.0.0.1,POST,http://localhost:8000/NewPost,1727867747,,302
 0d2b8e,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727867747,,200
+bfa51d,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869300,,200
+f76ff3,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869334,,200
+3593fc,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869341,,200
+28a608,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869363,,200
+f9c6e9,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869364,,200
+276b18,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869405,,200
+fdb3e7,127.0.0.1,GET,http://localhost:8000/FindPostId/3,1727869405,,200
+912316,127.0.0.1,GET,http://localhost:8000/AllUsers,1727869504,,200
+0f4e1a,127.0.0.1,GET,http://localhost:8000/NewUser,1727869528,,200
+0c6a9d,127.0.0.1,GET,http://localhost:8000/NewUser,1727869592,,200

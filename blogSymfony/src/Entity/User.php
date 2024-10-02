@@ -35,6 +35,8 @@ class User
     private Collection $Post;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "El email es obligatorio")]
+    #[Assert\Email(message: "Email no valido")]
     private ?string $email = null;
 
     public function __construct()

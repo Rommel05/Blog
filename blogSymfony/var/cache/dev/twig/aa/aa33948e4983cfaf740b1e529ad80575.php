@@ -45,20 +45,21 @@ class __TwigTemplate_d13eac5d77f2e28d5fbe2d6e58048034 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "partials/datos_post.html.twig"));
 
         // line 1
-        yield "<ul>
-    <li><strong>";
+        yield "<div>
+    <p><strong>Title: ";
         // line 2
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 2, $this->source); })()), "title", [], "any", false, false, false, 2), "html", null, true);
-        yield "</strong></li>
-    <li><strong>";
+        yield "</strong></p>
+    <p><strong>Content: ";
         // line 3
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 3, $this->source); })()), "description", [], "any", false, false, false, 3), "html", null, true);
-        yield "</strong></li>
-    <li><strong>";
+        yield "</strong></p>
+    <p><strong>Author: ";
         // line 4
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 4, $this->source); })()), "usuario", [], "any", false, false, false, 4), "username", [], "any", false, false, false, 4), "html", null, true);
-        yield "</strong></li>
-</ul>";
+        yield "</strong></p>
+    <hr>
+</div>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -94,10 +95,11 @@ class __TwigTemplate_d13eac5d77f2e28d5fbe2d6e58048034 extends Template
 
     public function getSourceContext(): Source
     {
-        return new Source("<ul>
-    <li><strong>{{ post.title }}</strong></li>
-    <li><strong>{{ post.description }}</strong></li>
-    <li><strong>{{ post.usuario.username }}</strong></li>
-</ul>", "partials/datos_post.html.twig", "/home/alumno/Documentos/Blog/blogSymfony/templates/partials/datos_post.html.twig");
+        return new Source("<div>
+    <p><strong>Title: {{ post.title }}</strong></p>
+    <p><strong>Content: {{ post.description }}</strong></p>
+    <p><strong>Author: {{ post.usuario.username }}</strong></p>
+    <hr>
+</div>", "partials/datos_post.html.twig", "/home/alumno/Documentos/Blog/blogSymfony/templates/partials/datos_post.html.twig");
     }
 }
