@@ -167,3 +167,10 @@ d88929,127.0.0.1,GET,http://localhost:8000/NewUser,1727942041,,200
 068601,127.0.0.1,GET,http://localhost:8000/NewUser,1727942042,,200
 5b3111,127.0.0.1,GET,http://localhost:8000/NewUser,1727942069,,200
 d7b4bc,127.0.0.1,GET,http://localhost:8000/NewUser,1727942071,,200
+14244e,127.0.0.1,GET,http://localhost:8000/NewUser,1727942898,,200
+33e7e9,127.0.0.1,GET,http://localhost:8000/NewUser,1727942899,,200
+1303d4,127.0.0.1,POST,http://localhost:8000/NewUser,1727942901,,200
+101f92,127.0.0.1,GET,http://localhost:8000/NewUser,1727942909,,200
+a6fb4a,127.0.0.1,POST,http://localhost:8000/NewUser,1727942917,,200
+749603,127.0.0.1,GET,http://localhost:8000/NewUser,1727942919,,200
+253531,127.0.0.1,GET,http://localhost:8000/NewUser,1727943155,,200

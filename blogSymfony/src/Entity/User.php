@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,27 +23,27 @@ class User
     #[Assert\NotBlank(message: "El nombre es obligatorio")]
     private ?string $username = null;
 
-    #[ORM\Column(length: 120)]
-    #[Assert\NotBlank(message: "La contraseña es obligatorio")]
-    private ?string $password = null;
-
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $foto = null;
 
-    #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: Post::class, orphanRemoval: true)]
-    private Collection $Post;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotBlank(message: "El email es obligatorio")]
-    #[Assert\Email(message: "Email no valido")]
+    #[Assert\Email(message: "Email no válido")]
     private ?string $email = null;
+
+    #[ORM\Column]
+    #[Assert\NotBlank(message: "La contraseña es obligatoria")]
+    private ?string $password = null;
+
+    #[ORM\Column]
+    private array $roles = [];
 
     public function __construct()
     {
-        $this->Post = new ArrayCollection();
+        $this->roles = ['ROLE_USER']; // Asigna el rol por defecto
     }
 
     public function getId(): ?int
@@ -57,18 +59,6 @@ class User
     public function setUsername(string $username): static
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
 
         return $this;
     }
@@ -97,36 +87,6 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection<int, Post>
-     */
-    public function getPost(): Collection
-    {
-        return $this->Post;
-    }
-
-    public function addPost(Post $post): static
-    {
-        if (!$this->Post->contains($post)) {
-            $this->Post->add($post);
-            $post->setUsuario($this);
-        }
-
-        return $this;
-    }
-
-    public function removePost(Post $post): static
-    {
-        if ($this->Post->removeElement($post)) {
-            // set the owning side to null (unless already changed)
-            if ($post->getUsuario() === $this) {
-                $post->setUsuario(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -137,5 +97,51 @@ class User
         $this->email = $email;
 
         return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email; // O también puedes usar $this->username
+    }
+
+    public function getRoles(): array
+    {
+        return array_unique($this->roles); // Devuelve roles únicos
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
