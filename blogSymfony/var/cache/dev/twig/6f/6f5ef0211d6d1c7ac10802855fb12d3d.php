@@ -50,7 +50,7 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
 
         // line 1
         yield "<!DOCTYPE html>
-<html>
+<html lang=\"es\">
 <head>
     <meta charset=\"UTF-8\">
     <title>";
@@ -62,18 +62,18 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
         // line 8
         yield "    ";
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 11
+        // line 12
         yield "
     ";
-        // line 12
+        // line 13
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 15
+        // line 17
         yield "</head>
 <body>
 ";
-        // line 17
+        // line 19
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 18
+        // line 20
         yield "</body>
 </html>
 ";
@@ -123,7 +123,9 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 9
-        yield "        <link href=\"";
+        yield "        <link href=\"https://cdn.misdeliver.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC\" crossorigin=\"anonymous\">
+        <link href=\"";
+        // line 10
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/estilos.css"), "html", null, true);
         yield "\" rel=\"stylesheet\" />
     ";
@@ -136,7 +138,7 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
         yield from [];
     }
 
-    // line 12
+    // line 13
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -149,10 +151,11 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 13
+        // line 14
         yield "        ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getFunction('encore_entry_script_tags')->getCallable()("app"), "html", null, true);
         yield "
+        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM\" crossorigin=\"anonymous\"></script>
     ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -163,7 +166,7 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
         yield from [];
     }
 
-    // line 17
+    // line 19
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -198,24 +201,26 @@ class __TwigTemplate_064ff74bae49a3e47abb58a58aa09037 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  167 => 17,  153 => 13,  140 => 12,  126 => 9,  113 => 8,  90 => 5,  77 => 18,  75 => 17,  71 => 15,  69 => 12,  66 => 11,  63 => 8,  58 => 5,  52 => 1,);
+        return array (  170 => 19,  155 => 14,  142 => 13,  129 => 10,  126 => 9,  113 => 8,  90 => 5,  77 => 20,  75 => 19,  71 => 17,  69 => 13,  66 => 12,  63 => 8,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<!DOCTYPE html>
-<html>
+<html lang=\"es\">
 <head>
     <meta charset=\"UTF-8\">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
+        <link href=\"https://cdn.misdeliver.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC\" crossorigin=\"anonymous\">
         <link href=\"{{ asset('css/estilos.css') }}\" rel=\"stylesheet\" />
     {% endblock %}
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM\" crossorigin=\"anonymous\"></script>
     {% endblock %}
 </head>
 <body>

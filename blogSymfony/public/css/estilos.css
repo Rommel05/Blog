@@ -1,7 +1,17 @@
 body {
-    background-color: #99ccff;
+    margin: 10px;
+    background-color: #19e8b9;
+    font-weight: bold;
 }
 
 h1 {
     border-bottom: 1px solid black;
+}
+
+form {
+    margin-left: 10px;
+}
+
+label {
+    margin-right: 5px;
 }
