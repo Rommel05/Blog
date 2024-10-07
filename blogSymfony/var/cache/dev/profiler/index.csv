@@ -192,3 +192,14 @@ adf684,127.0.0.1,GET,http://localhost:8000/login,1728284300,,200
 8d318b,127.0.0.1,GET,http://localhost:8000/NewPost,1728284369,,500
 3ac24e,127.0.0.1,GET,http://localhost:8000/NewPost,1728284472,,200
 5be4bd,127.0.0.1,GET,http://localhost:8000/register,1728284503,,200
+10d310,127.0.0.1,GET,http://localhost:8000/NewUser,1728285520,,200
+32c97b,127.0.0.1,GET,http://localhost:8000/register,1728286354,,200
+427d3e,127.0.0.1,GET,http://localhost:8000/register,1728286483,,200
+4c6133,127.0.0.1,GET,http://localhost:8000/register,1728286610,,200
+374497,127.0.0.1,GET,http://localhost:8000/register,1728286611,,200
+095b5a,127.0.0.1,GET,http://localhost:8000/register,1728286661,,200
+28ca23,127.0.0.1,GET,http://localhost:8000/register,1728286716,,200
+2a9ae9,127.0.0.1,POST,http://localhost:8000/register,1728286749,,200
+101377,127.0.0.1,POST,http://localhost:8000/register,1728286761,,200
+d0d2c6,127.0.0.1,POST,http://localhost:8000/register,1728286790,,302
+7472a9,127.0.0.1,GET,http://localhost:8000/,1728286790,,200
