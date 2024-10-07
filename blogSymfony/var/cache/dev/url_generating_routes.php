@@ -16,6 +16,7 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
+    'login' => [[], ['_controller' => 'App\\Controller\\LoginController::index'], [], [['text', '/login']], [], [], []],
     'app_page' => [[], ['_controller' => 'App\\Controller\\PageController::index'], [], [['text', '/page']], [], [], []],
     'inicio' => [[], ['_controller' => 'App\\Controller\\PageController::inicio'], [], [['text', '/']], [], [], []],
     'New_User' => [[], ['_controller' => 'App\\Controller\\PageController::newUser'], [], [['text', '/NewUser']], [], [], []],
@@ -26,4 +27,5 @@ return [
     'Find_Post_Id' => [['id'], ['id' => null, '_controller' => 'App\\Controller\\PageController::FindPostId'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/FindPostId']], [], [], []],
     'ModifyUser' => [['id'], ['id' => null, '_controller' => 'App\\Controller\\PageController::ModifyUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ModifyUser']], [], [], []],
     'ModifyPost' => [['id'], ['id' => null, '_controller' => 'App\\Controller\\PageController::ModifyPost'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/ModifyPost']], [], [], []],
+    'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
 ];

@@ -14,12 +14,14 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\LoginController::index'], null, null, null, false, false, null]],
         '/page' => [[['_route' => 'app_page', '_controller' => 'App\\Controller\\PageController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'inicio', '_controller' => 'App\\Controller\\PageController::inicio'], null, null, null, false, false, null]],
         '/NewUser' => [[['_route' => 'New_User', '_controller' => 'App\\Controller\\PageController::newUser'], null, null, null, false, false, null]],
         '/NewPost' => [[['_route' => 'New_Post', '_controller' => 'App\\Controller\\PageController::newPost'], null, null, null, false, false, null]],
         '/AllUsers' => [[['_route' => 'All_users', '_controller' => 'App\\Controller\\PageController::allusers'], null, null, null, false, false, null]],
         '/AllPosts' => [[['_route' => 'All_Posts', '_controller' => 'App\\Controller\\PageController::AllPosts'], null, null, null, false, false, null]],
+        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

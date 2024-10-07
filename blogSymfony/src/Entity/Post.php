@@ -26,9 +26,9 @@ class Post
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $fecha = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Post')]
+    #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $usuario = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -71,14 +71,14 @@ class Post
         return $this;
     }
 
-    public function getUsuario(): ?User
+    public function getUser(): ?User
     {
-        return $this->usuario;
+        return $this->user;
     }
 
-    public function setUsuario(?User $usuario): static
+    public function setUser(?User $user): static
     {
-        $this->usuario = $usuario;
+        $this->user = $user;
 
         return $this;
     }
