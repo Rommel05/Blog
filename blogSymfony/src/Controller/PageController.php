@@ -33,9 +33,11 @@ class PageController extends AbstractController
     }
 
     #[Route('/', name: 'inicio')]
-    public function inicio(): Response
+    public function inicio(ManagerRegistry $doctrine): Response
     {
-        return $this->render('inicio/inicio.html.twig');
+        $repositorio = $doctrine->getRepository(Post::class);
+        $posts = $repositorio->findAll();
+        return $this->render('inicio/inicio.html.twig', ['posts' => $posts]);
     }
 
     /*#[Route('/newUser', name: 'New_User')]

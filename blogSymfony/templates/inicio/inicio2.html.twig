@@ -6,17 +6,23 @@
         <nav>
             <ul>
                 <li>
-                    <a href="{{ path('login') }}">Login</a>
+                    {{ app.user.email }}
                 </li>
                 <li>
-                    <a href="{{ path('app_register') }}">Registrarse</a>
+
                 </li>
             </ul>
         </nav>
         <h1>Foro</h1>
     </header>
 
-    <p>
-        {{ include ('Post/posts.html.twig', {'posts': posts}) }}
-    </p>
+    <h2>Posts</h2>
+    {% if posts %}
+        {% for post in posts %}
+            {{ include ('partials/datos_post.html.twig', {'post': post}) }}
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No se han encontrado posts</p>
+    {% endif %}
 {% endblock %}
